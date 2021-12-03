@@ -36,11 +36,15 @@ class GetData:
         return request_method
 
     #获取url
-    def get_request_url(self,row):
+    def get_request_url(self,row,user_id):
         col = int(data_config.get_url())
         data = self.opera_excel.get_cell_value(row,col)
-
-        return "https://newapi-test.1911edu.com"+data
+        url="https://newapi-test.1911edu.com"+data
+        if 'id' in url:
+            url=url+user_id
+        else:
+            pass
+        return url
 
     #获取请求数据
     def get_request_data(self,row):

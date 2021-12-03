@@ -64,7 +64,7 @@ class RunTest:
         for i in range(1, rows_count):
             is_run = self.data.get_is_run(i)
             if is_run :
-                url = self.data.get_request_url(i)  # 请求地址
+                url = self.data.get_request_url(i,self.user_id)  # 请求地址
                 method = self.data.get_request_method(i)  # 请求方式
                 request_data = self.data.get_data_for_json(i)  # 请求数据
                 expect = self.data.get_expact_data(i)  # 获取预期结果
