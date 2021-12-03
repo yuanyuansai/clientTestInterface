@@ -40,7 +40,7 @@ class GetData:
         col = int(data_config.get_url())
         data = self.opera_excel.get_cell_value(row,col)
 
-        return "https://gl-test.1911edu.com"+data
+        return "https://newapi-test.1911edu.com"+data
 
     #获取请求数据
     def get_request_data(self,row):

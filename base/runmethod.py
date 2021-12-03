@@ -34,26 +34,17 @@ class RunMethod:
 
         return res1
 if __name__ == '__main__':
-    url = "https://gl-test.1911edu.com/api/auth/login"
-    data = None
+    url = "https://newapi-test.1911edu.com/api/auth/login_by_password"
     cookies = None
     headers = {
-        "cookie": "Path=/; Path=/; Path=/",
-        "content-type": "application/json"
+        "device-model": "1",
+        "client-type": "1",
+        "content-type": "application/x-www-form-urlencoded"
     }
     method = "POST"
-    data = {
-        "phone": "13888888888",
-        "password": "59E778220E9785BF72D53B5297A45561",
-        "code": "9999"
-    }
-    import json
 
-    print(type(headers))
-    data = json.dumps(data)
-    r = requests.post(url, data=data, cookies=cookies, headers=headers, verify=False)
-    # r=RunMethod().run_main(url, method, data,cookies,headers)
-    print(type(r))
-    print(r.text)
-    print(r.headers)
-    print(r.headers['Set-Cookie'])
+    import json
+    r = requests.post(url, data='account=15117961941&password=2569D419BFEA999FF13FD1F7F4498B89&role_type=1', cookies=cookies, headers=headers, verify=False).json()
+    print(r)
+    print(r['data']['token'])
+

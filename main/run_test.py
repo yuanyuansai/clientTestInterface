@@ -19,31 +19,29 @@ class RunTest:
         self.data = GetData()
         self.com_util = CommonUtil()
         self.send_mail = SendEmail()
+        self.userDetail=self.Login()
+        self.user_id=self.userDetail['data']['user_info']['id']
 
         self.headers = {
+            "device-model": "iPhone11,6",
+            "client-type": "1",
             "content-type": "application/json"
         }
-        self.headers['cookie']=self.Login()
-        # self.headers = self.carry_header()
+        self.headers['authorization']=self.userDetail['data']['token']
     def Login(self):
-        url = "https://gl-test.1911edu.com/api/auth/login"
+        url = "https://newapi-test.1911edu.com/api/auth/login_by_password"
         cookies = None
         headers = {
-            "cookie": "Path=/; Path=/; Path=/",
-            "content-type": "application/json"
+            "device-model": "1",
+            "client-type": "1",
+            "content-type": "application/x-www-form-urlencoded"
         }
         method = "POST"
-        data = {
-            "phone": "13888888888",
-            "password": "59E778220E9785BF72D53B5297A45561",
-            "code": "9999"
-        }
-        import requests
-        res = requests.post(url, data=json.dumps(data), cookies=cookies, headers=headers, verify=False)
-        print(type(res.headers['Set-Cookie']))
-        header=res.headers['Set-Cookie']
 
-        return header[header.index('SESSION'):]
+        import requests
+        res = requests.post(url, data='account=15117961941&password=2569D419BFEA999FF13FD1F7F4498B89&role_type=1',cookies=cookies, headers=headers, verify=False).json()
+        print(res['data']['token'])
+        return res
 
     def carry_header(self):
         '''
@@ -88,6 +86,7 @@ class RunTest:
                 if header == 'yes':
 
                     print(self.headers)
+                    print(url)
                     res = self.run_method.run_main(url, method, request_data,cookies, self.headers)
                     print(res)
                 else:
