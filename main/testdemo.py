@@ -6,9 +6,5 @@
 # headers['a'] = 1
 # print(headers)
 # print(type(headers))
-
-
-print('哈哈哈'%4)
-
-
-
+import time
+print(time.mktime())

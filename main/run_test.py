@@ -40,7 +40,7 @@ class RunTest:
 
         import requests
         res = requests.post(url, data='account=15117961941&password=2569D419BFEA999FF13FD1F7F4498B89&role_type=1',cookies=cookies, headers=headers, verify=False).json()
-        print(res['data']['token'])
+        # print(res['data']['token'])
         return res
 
     def carry_header(self):
@@ -103,7 +103,7 @@ class RunTest:
             else:
                 continue
 
-        self.send_mail.send_main(pass_count, fail_count)
+        # self.send_mail.send_main(pass_count, fail_count)
 
 
 if __name__ == '__main__':

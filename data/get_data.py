@@ -40,7 +40,7 @@ class GetData:
         col = int(data_config.get_url())
         data = self.opera_excel.get_cell_value(row,col)
         url="https://newapi-test.1911edu.com"+data
-        if 'id' in url:
+        if '?id' in url:
             url=url+user_id
         else:
             pass
