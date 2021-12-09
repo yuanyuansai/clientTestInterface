@@ -56,7 +56,7 @@ class RunTest:
 
     # 程序执行的
     def go_on_run(self):
-        print('------接口测试开始执行------')
+        print('------接口测试执行中,静等2分钟------')
         pass_count = []
         fail_count = []
         rows_count = self.data.get_case_lines()  # 获取用例行数
@@ -89,19 +89,19 @@ class RunTest:
                 if header == 'yes':
                     if contentType :
                         self.headers['content-type']=contentType
-                    print(self.headers)
-                    print(url)
                     res = self.run_method.run_main(url, method, request_data,cookies, self.headers)
-                    print(res)
+
                 else:
                     res = self.run_method.run_main(url, method, request_data, self.headers)
-                    print("res:", res)
+
                 if isinstance(res, dict) and res['status'] == expect:
                     # 判断两个字符串相等     self.com_util.is_equal_dict(expect,res) == 0:判断结果相等写入pass
                     self.data.write_result(i, 'pass')
                     pass_count.append(i)
                 else:
                     fail_count.append(i)  # 预期与实际不一样写入fail
+                    print('请求失败接口地址:',url)
+                    print('响应:',res)
                     self.data.write_result(i, json.dumps(res))
             else:
                 continue
