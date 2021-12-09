@@ -36,7 +36,7 @@ class SendEmail:
         print(content)
         user_list = ['yaoxiaoyuan@1911edu.com']
         sub = "接口自动化测试报告"
-        self.send_mail(user_list,sub,content)
+        # self.send_mail(user_list,sub,content)
 
 if __name__ == '__main__':
     sen = SendEmail()

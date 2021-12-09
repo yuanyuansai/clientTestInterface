@@ -11,6 +11,8 @@ class global_var:
     data = '9'
     expect = '10'
     result = '11'
+    contentType = '12'
+    hasUserId='13'
 
 def get_id():
     return global_var.Id
@@ -44,3 +46,8 @@ def get_expect():
 def get_result():
 	return global_var.result
 
+def get_contentType():
+	return global_var.contentType
+
+def get_userId():
+	return global_var.hasUserId

@@ -6,5 +6,10 @@
 # headers['a'] = 1
 # print(headers)
 # print(type(headers))
-import time
-print(time.mktime())
+headers = {
+            "device-model": "1",
+            "client-type": "1",
+            "content-type": "application/x-www-form-urlencoded"
+        }
+headers['content-type'] = 'json'
+print(headers)

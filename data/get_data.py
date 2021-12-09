@@ -36,11 +36,11 @@ class GetData:
         return request_method
 
     #获取url
-    def get_request_url(self,row,user_id):
+    def get_request_url(self,row,user_id,hasUserId):
         col = int(data_config.get_url())
         data = self.opera_excel.get_cell_value(row,col)
         url="https://newapi-test.1911edu.com"+data
-        if '?id' in url:
+        if hasUserId:
             url=url+user_id
         else:
             pass
@@ -102,6 +102,23 @@ class GetData:
     #获取数据依赖字段
     def get_depend_field(self,row):
         col = int(data_config.get_field_depend())
+        data = self.opera_excel.get_cell_value(row,col)
+        if data =="":
+            return None
+        else:
+            return data
+    #获取content-type
+    def get_contentType(self,row):
+        col = int(data_config.get_contentType())
+        data = self.opera_excel.get_cell_value(row,col)
+        if data =="":
+            return None
+        else:
+            return data
+
+    #获取userId
+    def get_userId(self,row):
+        col = int(data_config.get_userId())
         data = self.opera_excel.get_cell_value(row,col)
         if data =="":
             return None

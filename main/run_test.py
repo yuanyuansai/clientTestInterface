@@ -64,12 +64,15 @@ class RunTest:
         for i in range(1, rows_count):
             is_run = self.data.get_is_run(i)
             if is_run :
-                url = self.data.get_request_url(i,self.user_id)  # 请求地址
                 method = self.data.get_request_method(i)  # 请求方式
                 request_data = self.data.get_data_for_json(i)  # 请求数据
                 expect = self.data.get_expact_data(i)  # 获取预期结果
                 header = self.data.is_header(i)  # 获取是否携带header
                 depend_case = self.data.is_depend(i)  # 获取是否有case依赖
+                contentType=self.data.get_contentType(i)
+                hasUserId=self.data.get_userId(i)
+                url = self.data.get_request_url(i, self.user_id,hasUserId) # 请求地址
+
                 # cookies = eval(OperationJson('../dataconfig/cookie').data)
                 cookies=None
 
@@ -84,7 +87,8 @@ class RunTest:
                 #     op_header = OperationHeader(res)
                 #     op_header.write_cookie()
                 if header == 'yes':
-
+                    if contentType :
+                        self.headers['content-type']=contentType
                     print(self.headers)
                     print(url)
                     res = self.run_method.run_main(url, method, request_data,cookies, self.headers)
@@ -96,14 +100,13 @@ class RunTest:
                     # 判断两个字符串相等     self.com_util.is_equal_dict(expect,res) == 0:判断结果相等写入pass
                     self.data.write_result(i, 'pass')
                     pass_count.append(i)
-
                 else:
                     fail_count.append(i)  # 预期与实际不一样写入fail
                     self.data.write_result(i, json.dumps(res))
             else:
                 continue
 
-        # self.send_mail.send_main(pass_count, fail_count)
+        self.send_mail.send_main(pass_count, fail_count)
 
 
 if __name__ == '__main__':
