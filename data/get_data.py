@@ -110,7 +110,7 @@ class GetData:
         if data =="":
             return None
         else:
-            return data
+            return str(data)
 
     #获取userId
     def get_userId(self,row):

@@ -84,7 +84,7 @@ class RunTest:
                 expect = self.data.get_expact_data(i)  # 获取预期结果
                 header = self.data.is_header(i)  # 获取是否携带header
                 depend_case = self.data.is_depend(i)  # 获取是否有case依赖
-                contentType = self.data.get_contentType(i)
+                signature = self.data.get_contentType(i)
                 hasUserId = self.data.get_userId(i)
                 url = self.data.get_request_url(i)  # 请求地址
                 print(url)
@@ -102,15 +102,15 @@ class RunTest:
                 #     op_header = OperationHeader(res)
                 #     op_header.write_cookie()
                 if header == 'yes':
-                    # if contentType:
-                    #     self.headers['content-type'] = contentType
+                    if signature:
+                        self.headers['signature'] = signature
                     res = self.run_method.run_main(url, method, request_data, cookies, self.headers)
 
                 else:
                     res = self.run_method.run_main(url, method, request_data, self.headers)
-                print(type(res['code']))
-                print("expect",expect)
-                print(type(expect))
+                # print(type(res['code']))
+                # print("expect",expect)
+                # print(type(expect))
                 # isinstance(res, dict) and
                 if  res['code'] == expect:
                     # 判断两个字符串相等     self.com_util.is_equal_dict(expect,res) == 0:判断结果相等写入pass
