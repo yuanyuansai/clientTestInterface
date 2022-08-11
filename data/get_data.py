@@ -36,14 +36,10 @@ class GetData:
         return request_method
 
     #获取url
-    def get_request_url(self,row,user_id,hasUserId):
+    def get_request_url(self,row):
         col = int(data_config.get_url())
         data = self.opera_excel.get_cell_value(row,col)
-        url="https://newapi.1911edu.com"+data
-        if hasUserId:
-            url=url+user_id
-        else:
-            pass
+        url="https://zyapi-test.zhouyunft.com"+data
         return url
 
     #获取请求数据
@@ -67,7 +63,7 @@ class GetData:
         expact = self.opera_excel.get_cell_value(row,col)
         if expact == '':
             return None
-        return expact
+        return str(int(expact))
 
     #通过sql获取预期结果
     def get_expact_data_for_mysql(self,row):

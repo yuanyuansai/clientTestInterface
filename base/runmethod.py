@@ -1,4 +1,4 @@
-import requests
+import requests,json
 
 class RunMethod:
 
@@ -8,31 +8,38 @@ class RunMethod:
         return res
 
     def send_post(self,url,data=None,cookies=None,headers=None):
+        print("url:",url)
 
-        res = requests.post(url,data=data,cookies=cookies,headers=headers,verify=False)
+        print("data:",data)
+
+        print("headers:",headers)
+        print(type(url))
+        print(type(json.dumps(data)))
+        print(type(headers))
+        res = requests.post(url, data=data,
+                            cookies=cookies, headers=headers, verify=False).json()
+        print(res)
         return res
 
     def run_main(self,url,method,data=None,cookies=None,headers=None):
 
         requests.packages.urllib3.disable_warnings()
-        res = None
-
-
         if method == 'GET':
             res = self.send_get(url,cookies,headers)
         else:
             res = self.send_post(url,data=data,cookies=cookies,headers=headers)
 
-        #响应的捕捉异常
-        res1=None
-        try:
-            res1=res.json()
-        except Exception as e:
-            print("这是异常")
-            print(e)
-            print("这是异常")
+        # #响应的捕捉异常
+        # res1=None
+        # try:
+        #     res1=res.json()
+        # except Exception as e:
+        #     print("这是异常")
+        #     print(res1)
+        #     print(e)
+        #     print("这是异常")
 
-        return res1
+        return res
 if __name__ == '__main__':
     url = "https://newapi-test.1911edu.com/api/auth/login_by_password"
     cookies = None
