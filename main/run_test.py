@@ -16,6 +16,7 @@ import time
 
 class RunTest:
     def __init__(self):
+        self.url = "https://zyapi-test.zhouyunft.com"
         self.run_method = RunMethod()
         self.data = GetData()
         self.com_util = CommonUtil()
@@ -32,19 +33,19 @@ class RunTest:
         self.headers['token'] = self.userDetail['data']['token']
 
     def Login(self):
-        url = "https://zyapi-test.zhouyunft.com/user/gateway/user/register"
+        url = self.url + "/user/gateway/user/register"
         cookies = None
         headers = {
             "content-type": "application/json",
             "appid": "1001",
             "appver": "2.0.0",
             "nonce": "",
-            "signature": "af51db73166acac0e1acc2d7ae6e2e94f25b8b50",
+            "signature": "eb7b4fa1705fa24b0c13f8e256ab0053a13731e4",
 
         }
         data = {
             "code": "1111",
-            "phone": "13681319134",
+            "phone": "17712345671",
             "systemVersion": "14.2",
             "inviteCode": "",
             "phoneModel": "iPhone 12"
@@ -86,7 +87,7 @@ class RunTest:
                 depend_case = self.data.is_depend(i)  # 获取是否有case依赖
                 signature = self.data.get_contentType(i)
                 hasUserId = self.data.get_userId(i)
-                url = self.data.get_request_url(i)  # 请求地址
+                url = self.data.get_request_url(i,self.url)  # 请求地址
                 print(url)
                 # cookies = eval(OperationJson('../dataconfig/cookie').data)
                 cookies = None

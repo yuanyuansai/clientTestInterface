@@ -8,14 +8,14 @@ class RunMethod:
         return res
 
     def send_post(self,url,data=None,cookies=None,headers=None):
-        print("url:",url)
-
-        print("data:",data)
-
-        print("headers:",headers)
-        print(type(url))
-        print(type(json.dumps(data)))
-        print(type(headers))
+        # print("url:",url)
+        #
+        # print("data:",data)
+        #
+        # print("headers:",headers)
+        # print(type(url))
+        # print(type(json.dumps(data)))
+        # print(type(headers))
         res = requests.post(url, data=data,
                             cookies=cookies, headers=headers, verify=False).json()
         print(res)
